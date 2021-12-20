@@ -20,6 +20,7 @@ set autoindent
 set smartindent
 set backupskip=/tmp/*,/private/tmp/*
 set colorcolumn=80
+set signcolumn=number
 highlight ColorColumn ctermbg=gray
 autocmd InsertLeave * set nopaste
 " conda installed default location and neovim setup in conda base
