@@ -4,6 +4,61 @@ alias s
     alias ${1:altname}
         ${2:snippet}
 
+snippet getunique
+    sort(${0:v}.begin(), ${0:v}.end());
+    ${0:v}.resize(std::distance(${0:v}.begin(), unique(${0:v}.begin(), ${0:v}.end())));
+
+# 
+snippet presum2d
+    vvi presum2d(const vvi & mtx){
+        int n = sz(mtx), m = sz(mtx[0]);
+        vvi ans(n+1, vi(m+1,0));
+        forall(i,0,n) forall(j,0,m){
+            ans[i+1][j+1] = mtx[i][j] + ans[i+1][j] + ans[i][j+1] - ans[i][j];
+        }
+        return move(ans);
+    }
+    int presum2d_query(const vvi & mtx, int loi, int loj, int hii, int hij){
+        ++hii, ++hij;
+        return mtx[hii][hij] - mtx[hii][loj] - mtx[loi][hij] + mtx[loi][loj];
+    }
+
+# longest increasing (or non-decreasing) subsequence
+# {3, 4, -1, 5, 8, 2, 3, 12, 7, 9, 10}; // 3,4,5,8,9,10 
+snippet lis
+    int LIS(const vi & v){
+        int n = sz(v), ans = 0;
+        vi u(n, INF);
+        for(auto x: v){
+            // auto itr = upper_bound(u.begin(), u.begin() + ans + 1, x);  // <=
+            auto itr = lower_bound(u.begin(), u.begin() + ans + 1, x); // <
+            ans += *itr==INF ? 1 : 0;
+            *itr = x;
+        }
+        return ans;
+    }
+
+# usage:  unordered_map<pair<int, int>, bool, hash_pair> um;
+snippet hashpair
+    struct hash_pair {
+        template <class T1, class T2>
+        size_t operator()(const pair<T1, T2>& p) const
+        {
+            auto hash1 = hash<T1>{}(p.first);
+            auto hash2 = hash<T2>{}(p.second);
+            return hash1 ^ hash2;
+        }
+    };
+
+# if palindrome
+snippet ispal
+    bool is_palin(const string & s){
+        int n = sz(s);
+        forall(i,0,n/2) if(s[i] != s[n-i-1]) return false;
+        return true;
+    }
+
+# manacher returns largest palindrome radius centered at i.
 snippet manacher
         vector<int> manacher(string & s){
         vector<int> v(s.size());
@@ -19,6 +74,22 @@ snippet manacher
         return std::move(v);
     }
 
+snippet unionfind
+    struct UF {
+        vector<int> e;
+        UF(int n) : e(n, -1) {}
+        bool same_set(int a, int b) { return find(a) == find(b); }
+        int size(int x) { return -e[find(x)]; }
+        int find(int x) { return e[x] < 0 ? x : e[x] = find(e[x]); }
+        void join(int a, int b) {
+            a = find(a), b = find(b);
+            if (a == b) return;
+            if (e[a] > e[b]) swap(a, b);
+            e[a] += e[b]; e[b] = a;
+        }
+    };
+
+# fenwick supports log(n) point update and range query
 snippet fenwick
     struct Fenwick { // one-based binary indexed tree
         vector<int> bit;
@@ -53,21 +124,46 @@ snippet fenwick
         }
     };
 
-snippet unionfind
-    struct UF {
-        vector<int> e;
-        UF(int n) : e(n, -1) {}
-        bool same_set(int a, int b) { return find(a) == find(b); }
-        int size(int x) { return -e[find(x)]; }
-        int find(int x) { return e[x] < 0 ? x : e[x] = find(e[x]); }
-        void join(int a, int b) {
-            a = find(a), b = find(b);
-            if (a == b) return;
-            if (e[a] > e[b]) swap(a, b);
-            e[a] += e[b]; e[b] = a;
-        }
-    };
+snippet fenwick2
+    template <typename T>
+    struct Fenwick2D {
+    vector<vector<T>> tree;
+    const T initVal;
+    function<T (T, T)> op;
 
-snippet getunique
-    sort(${0:v}.begin(), ${0:v}.end());
-    ${0:v}.resize(std::distance(${0:v}.begin(), unique(${0:v}.begin(), ${0:v}.end())));
+    // constructor
+    // n, m : dimension of elems, init : initial value
+    // op : associative & commutative operator
+    // O(n*m)
+    Fenwick2D(int n, int m, T init, function<T (T, T)> _op)
+        : tree(n + 1, vector<T>(m + 1, init)), initVal(init), op(_op) {
+    }
+
+    // fill initial value in all nodes
+    // O(n*m)
+    void clear() {
+        for (auto& v : tree) fill(v.begin(), v.end(), initVal);
+    }
+
+    // get value of  a[1][1..y] * a[2][1..y] * ... * a[x][1..y]
+    // 1 <= x <= n  ,  1 <= y <= m
+    // O(log(n)*log(m))
+    T query(int x, int y) {
+        T ret = initVal;
+        for (; x > 0; x -= x & -x) {
+        for (int ty = y; ty > 0; ty -= ty & -ty)
+            ret = op(ret, tree[x][ty]);
+        }
+        return ret;
+    }
+
+    // apply val to (x, y)
+    // 1 <= x <= n  ,  1 <= y <= m
+    // O(log(n)*log(m))
+    void update(int x, int y, T val) {
+        for (; x < tree.size(); x += x & -x) {
+        for (int ty = y; ty < tree[x].size(); ty += ty & -ty)
+            tree[x][ty] = op(tree[x][ty], val);
+        }
+    }
+    };
