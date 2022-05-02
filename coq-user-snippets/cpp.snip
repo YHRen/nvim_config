@@ -8,6 +8,8 @@ snippet getunique
     sort(${0:v}.begin(), ${0:v}.end());
     ${0:v}.resize(std::distance(${0:v}.begin(), unique(${0:v}.begin(), ${0:v}.end())));
 
+snippet inrange
+    if( ${0:xx} >= 0 && ${0:xx} < n && ${1:yy} >= 0 and ${1:yy} < m )
 # 
 snippet presum2d
     vvi presum2d(const vvi & mtx){
@@ -167,3 +169,85 @@ snippet fenwick2
         }
     }
     };
+
+snippet eulerian_path
+alias hierholzer
+    vvi eulerian_path(vvi& edges) {
+        // lc2097
+        unordered_map<int, vi> G;
+        unordered_map<int, int> cnt;
+        for(auto & p : edges){
+            G[p[0]].pb(p[1]);
+            cnt[p[0]] ++;
+            cnt[p[1]] --;
+        }
+        auto itr = find_if(all(cnt), [](auto & p){ return p.second > 0; });
+        if(itr == cnt.end()) itr = cnt.begin();
+        stack<int> S;
+        S.push(itr->first);
+        vi R;
+        while(!S.empty()){
+            for(int x = S.top(), y; in(x, G) && !G[x].empty(); x = y){
+                y = G[x].back();
+                G[x].pop_back();
+                S.push(y);
+            }
+            R.pb(S.top());
+            S.pop();
+        }
+        vvi ans;
+        for(int i = sz(R)-1; i >= 1; --i){
+            ans.pb({R[i], R[i-1]});
+        }
+        return ans;
+    }
+
+snippet reverselist
+    ListNode* reverse(ListNode * head){
+        ListNode * prv, * cur, * nxt;
+        cur = head;
+        while(cur!=nullptr){
+            nxt = cur->next;
+            cur->next = prv;
+            prv = cur;
+            cur = nxt;
+        }
+        return prv;
+    }
+
+snippet hungarian
+alias bipartite
+    pair<int, vi> hungarian(const vvi &G) {
+        // G is NxM adjacent matrix
+        // Negate costs for max cost.
+        if (G.empty()) return {0, {}};
+        int n = sz(G) + 1, m = sz(G[0]) + 1;
+        vi u(n), v(m), p(m), ans(n - 1);
+        forall(i,1,n){
+            p[0] = i;
+            int j0 = 0; // add "dummy" worker 0
+            vi dist(m, INF), pre(m, -1);
+            vector<bool> done(m + 1);
+            do { // dijkstra
+                done[j0] = true;
+                int i0 = p[j0], j1;
+                auto delta = INF;
+                forall(j,1,m) if (!done[j]) {
+                    auto cur = G[i0 - 1][j - 1] - u[i0] - v[j];
+                    if (cur < dist[j]) dist[j] = cur, pre[j] = j0;
+                    if (dist[j] < delta) delta = dist[j], j1 = j;
+                }
+                forall(j,0,m) {
+                    if (done[j]) u[p[j]] += delta, v[j] -= delta;
+                    else dist[j] -= delta;
+                }
+                j0 = j1;
+            } while (p[j0]);
+            while (j0) { // update alternating path
+                int j1 = pre[j0];
+                p[j0] = p[j1], j0 = j1;
+            }
+        }
+        forall(j,1,m) if (p[j]) ans[p[j] - 1] = j - 1;
+        return {-v[0], ans}; // min cost
+    }
