@@ -1,4 +1,3 @@
-
 ## setup plugins
 ### install neovim plugin management
 https://github.com/junegunn/vim-plug
@@ -22,6 +21,7 @@ ln -s <path-to-this-repo> "$HOME/.config/nvim"
 * install rust and cargo `curl https://sh.rustup.rs -sSf | sh`
 * install tree-sitter `cargo install tree-sitter-cli`
 
-### install other language servers as needed
 
+### install language servers
+`:LspInstall`
 
