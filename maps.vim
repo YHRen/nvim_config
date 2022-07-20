@@ -26,3 +26,16 @@ nnoremap <silent> <leader>kmp <cmd>Telescope keymaps<cr>
 nnoremap <silent> <leader>buff <cmd>Telescope buffers<cr>
 nnoremap <silent> <leader>help <cmd>Telescope help_tags<cr>
 
+""" vimspector
+nnoremap <Leader>dd :call vimspector#Launch()<CR>
+nnoremap <Leader>ds :call vimspector#Stop()<CR>
+nnoremap <Leader>de :call vimspector#Reset()<CR>
+nnoremap <Leader>dc :call vimspector#Continue()<CR>
+nnoremap <Leader>dt <Plug>VimspectorToggleBreakpoint
+nnoremap <Leader>dT <Plug>VimspectorClearBreakpoints
+nnoremap <Leader>db <Plug>VimspectorBreakpoints
+nnoremap <Leader>dr <Plug>VimspectorRestart
+nnoremap <Leader>dcc <Plug>VimspectorContinue
+nnoremap <Leader>dh <Plug>VimspectorStepOut
+nnoremap <Leader>dl <Plug>VimspectorStepInto
+nnoremap <Leader>dj <Plug>VimspectorStepOver

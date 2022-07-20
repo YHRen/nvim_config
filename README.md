@@ -25,3 +25,6 @@ ln -s <path-to-this-repo> "$HOME/.config/nvim"
 ### install language servers
 `:LspInstall`
 
+### install debugger
+`:VimspectorInstall <adapter>` then `:VimspectorUpdate`
+some examples in `vimspector/support/test/<language>`.
