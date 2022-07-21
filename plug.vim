@@ -48,12 +48,3 @@ let g:vimwiki_use_calendar = 1
 "{{{ vimtex
 let g:tex_flavor = 'latex'
 "}}}
-
-"{{{ Maximizer 
-nnoremap <silent><C-w>m :MaximizerToggle!<CR>
-vnoremap <silent><C-w>m :MaximizerToggle!<CR>
-"}}}
-
-"{{{ coq
-let g:coq_settings = { 'keymap.eval_snips': '<leader>j' }
-let g:coq_settings = { 'keymap.jump_to_mark': '<c-j>' }

@@ -30,12 +30,22 @@ nnoremap <silent> <leader>help <cmd>Telescope help_tags<cr>
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
 nnoremap <Leader>ds :call vimspector#Stop()<CR>
 nnoremap <Leader>de :call vimspector#Reset()<CR>
-nnoremap <Leader>dc :call vimspector#Continue()<CR>
-nnoremap <Leader>dt <Plug>VimspectorToggleBreakpoint
+nnoremap <Leader>dcc :call vimspector#Continue()<CR>
+nnoremap <Leader>dbb <Plug>VimspectorBreakpoints
+nnoremap <Leader>db <Plug>VimspectorToggleBreakpoint
 nnoremap <Leader>dT <Plug>VimspectorClearBreakpoints
-nnoremap <Leader>db <Plug>VimspectorBreakpoints
 nnoremap <Leader>dr <Plug>VimspectorRestart
-nnoremap <Leader>dcc <Plug>VimspectorContinue
-nnoremap <Leader>dh <Plug>VimspectorStepOut
-nnoremap <Leader>dl <Plug>VimspectorStepInto
-nnoremap <Leader>dj <Plug>VimspectorStepOver
+nnoremap <Leader>dc <Plug>VimspectorContinue
+nnoremap <Leader>dn <Plug>VimspectorStepOver
+nnoremap <Leader>dsi <Plug>VimspectorStepInto
+nnoremap <Leader>dso <Plug>VimspectorStepOut
+
+""" lsp keymap in after/plugin/lspconfig.rc.lua
+"{{{ Maximizer 
+nnoremap <silent><C-w>m :MaximizerToggle!<CR>
+vnoremap <silent><C-w>m :MaximizerToggle!<CR>
+"}}}
+
+"{{{ coq
+let g:coq_settings = { 'keymap.eval_snips': '<leader>j' }
+let g:coq_settings = { 'keymap.jump_to_mark': '<c-j>' }
