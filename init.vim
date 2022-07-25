@@ -6,7 +6,5 @@ runtime ./base.vim
 runtime ./plug.vim
 runtime ./maps.vim
 
-set background=dark
-colorscheme solarized8
-
-
+lua vim.g.tokyonight_style="night"
+colorscheme tokyonight

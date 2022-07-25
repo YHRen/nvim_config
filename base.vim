@@ -22,6 +22,7 @@ set smartindent
 set backupskip=/tmp/*,/private/tmp/*
 set colorcolumn=80
 set signcolumn=number
+set background=dark
 set laststatus=3 " nvim 0.7
 highlight ColorColumn ctermbg=gray
 autocmd InsertLeave * set nopaste
@@ -63,5 +64,3 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 "}}}
-
-

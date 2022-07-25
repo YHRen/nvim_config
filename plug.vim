@@ -6,6 +6,7 @@ call plug#begin()
 
 Plug 'lifepillar/vim-solarized8'
 Plug 'doums/darcula'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
