@@ -124,6 +124,12 @@ snippet fenwick
             for (++idx; idx < n; idx += idx & -idx)
                 bit[idx] += delta;
         }
+
+        /*
+            range update and point query mode:
+            range_add [l, r], x: add(l, x); add(r+1, -x);
+            point_query idx: sum(idx);
+        */
     };
 
 snippet fenwick2
