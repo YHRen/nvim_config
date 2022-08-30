@@ -257,3 +257,40 @@ alias bipartite
         forall(j,1,m) if (p[j]) ans[p[j] - 1] = j - 1;
         return {-v[0], ans}; // min cost
     }
+
+
+snippet trie
+    struct Trie {
+      static constexpr int c_sz = 26;
+      bool is_leaf;
+      Trie *children[c_sz];
+    
+    public:
+      Trie() {
+        this->is_leaf = false;
+        forall(i, 0, c_sz) { this->children[i] = nullptr; }
+      }
+      void insert(const string &s) {
+        Trie *curr = this;
+        for (auto c : s) {
+          int idx = c - 'a';
+          if (curr->children[idx] == nullptr) {
+            curr->children[idx] = new Trie();
+          }
+          curr = curr->children[idx];
+        }
+        curr->is_leaf = true;
+      }
+    
+      bool search(const string &s) {
+        Trie *curr = this;
+        for (auto c : s) {
+          int idx = c - 'a';
+          curr = curr->children[idx];
+          if (curr == nullptr) {
+            return false;
+          }
+        }
+        return this->is_leaf;
+      }
+    };
