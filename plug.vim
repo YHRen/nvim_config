@@ -11,7 +11,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-" Plug 'honza/vim-snippets'
 Plug 'vimwiki/vimwiki'
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
@@ -33,6 +32,8 @@ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'folke/lsp-colors.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-lua/popup.nvim'
+Plug 'hkupty/iron.nvim'
+" Plug 'https://github.com/luk400/vim-jukit' "require kitty 
 " Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
