@@ -31,10 +31,16 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'folke/lsp-colors.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
 Plug 'nvim-lua/popup.nvim'
-Plug 'hkupty/iron.nvim'
-" Plug 'https://github.com/luk400/vim-jukit' "require kitty 
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', {'branch': '0.1.x'}
+Plug 'BurntSushi/ripgrep'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' } " sorter
+Plug 'AckslD/nvim-neoclip.lua'
+Plug 'nvim-telescope/telescope-file-browser.nvim' " file folder moving
+
+Plug 'hkupty/iron.nvim'  " python REPL
 
 call plug#end()
 
