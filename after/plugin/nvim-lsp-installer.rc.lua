@@ -1,4 +1,3 @@
-lua << EOF
 require("nvim-lsp-installer").setup({
     ensure_installed = { "clojure_lsp", "pyright", "clangd", "yamlls", "rust_analyzer", "sumneko_lua" }, -- ensure these servers are always installed
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
@@ -10,4 +9,3 @@ require("nvim-lsp-installer").setup({
         }
     }
 })
-EOF

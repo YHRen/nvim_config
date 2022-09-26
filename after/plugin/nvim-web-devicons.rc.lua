@@ -1,5 +1,4 @@
-lua << END
-require'nvim-web-devicons'.setup({
+require('nvim-web-devicons').setup({
   override = {
     zsh = {
         icon = "",
@@ -15,4 +14,3 @@ require'nvim-web-devicons'.setup({
   };
   default = true;
 })
-END
