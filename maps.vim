@@ -23,11 +23,12 @@ nnoremap <silent> <leader>fh <cmd>Telescope help_tags theme=ivy<cr>
 nnoremap <silent> <leader>fk <cmd>Telescope keymaps theme=ivy<cr>
 nnoremap <silent> <leader>ft <cmd>Telescope treesitter theme=ivy<cr>
 nnoremap <silent> <leader>fr <cmd>Telescope registers<cr>
-nnoremap <silent> <leader>git <cmd>Telescope git_files<cr>
-nnoremap <silent> <leader>gcm <cmd>Telescope git_commits<cr>
-nnoremap <silent> <leader>buff <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>fgit <cmd>Telescope git_files<cr>
+nnoremap <silent> <leader>fgcm <cmd>Telescope git_commits<cr>
+nnoremap <silent> <leader>fbuff <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>femo :lua require("telescope.builtin").symbols{sources={'emoji', 'nerd'}}<cr>
 """ in my package ./lua/ray/tele.lua
-nnoremap <silent> <leader>fvimrc :lua require("ray.tele").find_vimrc_files()<cr>
+nnoremap <silent> <leader>fvim :lua require("ray.tele").find_vimrc_files()<cr>
 
 """ vimspector
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
