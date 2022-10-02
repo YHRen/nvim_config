@@ -1,3 +1,6 @@
+# some useful sites:
+# * https://github.com/e-maxx-eng/e-maxx-eng
+
 snippet snip
 alias s
     snippet ${0:name}
@@ -320,3 +323,21 @@ snippet trie
         return this->is_leaf;
       }
     };
+
+snippet kmp
+    // KMP string matching
+    // find p in t: prefix_func(p+"#"+t); for-each pi[i]==sz(p)
+    // ti = pt_i-2*sz(p)
+    vi prefix_function(const string & s) {
+        int n = sz(s);
+        vi pi(n, 0);
+        forall(i,1,n){
+            int j = pi[i-1];
+            while (j > 0 && s[i] != s[j])
+                j = pi[j-1];
+            if (s[i] == s[j])
+                j++;
+            pi[i] = j;
+        }
+        return pi;
+    }
