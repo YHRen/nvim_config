@@ -37,5 +37,7 @@ require'nvim-treesitter.configs'.setup {
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 vim.o.foldmethod = "expr"
+vim.o.foldminlines = 10
+vim.o.foldnestmax = 3
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 EOF

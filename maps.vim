@@ -30,7 +30,7 @@ nnoremap <silent> <leader>femo :lua require("telescope.builtin").symbols{sources
 """ in my package ./lua/ray/tele.lua
 nnoremap <silent> <leader>fvim :lua require("ray.tele").find_vimrc_files()<cr>
 
-""" vimspector
+""" vimspector <Leader>d
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
 nnoremap <Leader>ds :call vimspector#Stop()<CR>
 nnoremap <Leader>de :call vimspector#Reset()<CR>
@@ -53,3 +53,11 @@ vnoremap <silent><C-w>m :MaximizerToggle!<CR>
 "{{{ coq
 let g:coq_settings = { 'keymap.eval_snips': '<leader>j' }
 let g:coq_settings = { 'keymap.jump_to_mark': '<c-j>' }
+"}}}
+
+
+""" hop <Leader>h
+nnoremap <Leader><Leader> :HopChar2<CR>
+nnoremap <Leader>hl :HopLine<CR>
+omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+xnoremap <silent> m :lua require('tsht').nodes()<CR>
