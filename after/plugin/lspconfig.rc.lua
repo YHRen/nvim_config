@@ -1,3 +1,19 @@
+local servers = { 'clangd', 'clojure_lsp', 'marksman', 'pyright', 'rust_analyzer', 'tsserver', 'yamlls', 'texlab', 'sumneko_lua'}
+
+require("mason").setup({
+    ensure_installed = servers,
+})
+
+require("mason-lspconfig").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
 local nvim_lsp = require('lspconfig')
 local coq = require('coq')
 
@@ -37,7 +53,6 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'clojure_lsp', 'pyright', 'rust_analyzer', 'tsserver', 'yamlls', 'texlab' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities( {
     on_attach = on_attach,
