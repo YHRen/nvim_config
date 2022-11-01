@@ -28,7 +28,9 @@ highlight ColorColumn ctermbg=gray
 autocmd InsertLeave * set nopaste
 " conda installed default location and neovim setup in conda base
 if !has("mac")
-    let g:python3_host_prog = expand('~/anaconda3/bin/python') 
+    " let g:python3_host_prog = expand('~/anaconda3/bin/python') 
+    let g:python3_host_prog = expand('/usr/bin/python')
+    " apt install python3 python3-venv
 endif
 
 "{{{ netrw file browser
