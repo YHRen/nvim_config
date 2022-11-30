@@ -1,4 +1,6 @@
-local servers = { 'clangd', 'clojure_lsp', 'marksman', 'pyright', 'rust_analyzer', 'tsserver', 'yamlls', 'texlab', 'sumneko_lua'}
+local servers = { 'clangd', 'clojure_lsp', 'marksman',
+    'pylsp', 'rust_analyzer', 'tsserver', 'yamlls',
+    'texlab', 'sumneko_lua' }
 
 require("mason").setup({
     ensure_installed = servers,
