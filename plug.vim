@@ -18,7 +18,7 @@ Plug 'voldikss/vim-translator'
 Plug 'szw/vim-maximizer'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'puremourning/vimspector'
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+" Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'
@@ -35,6 +35,7 @@ Plug 'phaazon/hop.nvim'  " motion
 Plug 'mfussenegger/nvim-treehopper' " provides region selection 
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'esensar/nvim-dev-container'
 Plug 'folke/lsp-colors.nvim'
 
 Plug 'nvim-lua/popup.nvim'
