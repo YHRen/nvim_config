@@ -1,4 +1,3 @@
-lua << END
 require('lspkind').init({
     -- enables text annotations
     --
@@ -44,4 +43,3 @@ require('lspkind').init({
       TypeParameter = ""
     },
 })
-END

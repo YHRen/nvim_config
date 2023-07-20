@@ -7,6 +7,10 @@ alias s
     alias ${1:altname}
         ${2:snippet}
 
+snippet mod
+alias mod
+    (${1:x} % ${0:b} + ${0:b}) % ${0:b}
+
 snippet getunique
     sort(${0:v}.begin(), ${0:v}.end());
     ${0:v}.resize(std::distance(${0:v}.begin(), unique(${0:v}.begin(), ${0:v}.end())));
@@ -379,3 +383,22 @@ snippet TreeNode
         }
     };
 
+snippet primes
+    vi primes(int upto_n){
+        ll n = upto_n;
+        vector<bool> is_prime(n+1, true);
+        is_prime[0] = is_prime[1] = false;
+        for (ll i = 2; i*i <= n; i++) {
+            if (is_prime[i]){
+                for (ll j = i * i; j <= n; j += i)
+                    is_prime[j] = false;
+            }
+        }
+        vi ans;
+        for(int i = 1; i < n+1; ++i){
+            if(is_prime[i]){
+                    ans.push_back(i);
+            }
+        }
+        return ans;
+    }
