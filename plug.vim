@@ -4,14 +4,13 @@ endif
 
 call plug#begin()
 
-Plug 'lifepillar/vim-solarized8'
-Plug 'doums/darcula'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'vimwiki/vimwiki'
+" Plug 'serenevoid/kiwi.nvim'
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 Plug 'voldikss/vim-translator'
