@@ -141,8 +141,9 @@ snippet fenwick
 
 # https://codeforces.com/blog/entry/18051
 # modify one element in the array; find the sum of elements on some segment.
+# init n as n = sz(v);
+# init t as: fill(t, t+2*n, 0); copy(all(v), t+n);
 snippet segtree
-    # SegTree
     const int N = 1e5;  // limit for array size
     int t[2 * N];
     int n = N;  // array size
