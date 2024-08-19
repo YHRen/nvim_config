@@ -11,7 +11,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 " Plug 'vimwiki/vimwiki'
 Plug 'serenevoid/kiwi.nvim'
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 Plug 'voldikss/vim-translator'
 Plug 'szw/vim-maximizer'
@@ -27,6 +27,7 @@ Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-tree/nvim-tree.lua'
+Plug 'mhartington/formatter.nvim'
 Plug 'onsails/lspkind-nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
@@ -60,5 +61,5 @@ let g:vimwiki_use_calendar = 1
 "}}} 
 
 "{{{ vimtex
-let g:tex_flavor = 'latex'
+" let g:tex_flavor = 'latex'
 "}}}
