@@ -1,5 +1,6 @@
 # some useful sites:
 # * https://github.com/e-maxx-eng/e-maxx-eng
+# * https://github.com/kth-competitive-programming/kactl
 
 snippet snip
 alias s
@@ -293,59 +294,6 @@ alias bipartite
     }
 
 
-snippet trie
-    struct Trie {
-      static constexpr int c_sz = 26;
-      bool is_leaf;
-      Trie *children[c_sz];
-    
-    public:
-      Trie() {
-        this->is_leaf = false;
-        forall(i, 0, c_sz) { this->children[i] = nullptr; }
-      }
-      void insert(const string &s) {
-        Trie *curr = this;
-        for (auto c : s) {
-          int idx = c - 'a';
-          if (curr->children[idx] == nullptr) {
-            curr->children[idx] = new Trie();
-          }
-          curr = curr->children[idx];
-        }
-        curr->is_leaf = true;
-      }
-    
-      bool search(const string &s) {
-        Trie *curr = this;
-        for (auto c : s) {
-          int idx = c - 'a';
-          curr = curr->children[idx];
-          if (curr == nullptr) {
-            return false;
-          }
-        }
-        return this->is_leaf;
-      }
-    };
-
-snippet kmp
-    // KMP string matching
-    // find p in t: prefix_func(p+"#"+t); for-each pi[i]==sz(p)
-    // ti = pt_i-2*sz(p)
-    vi prefix_function(const string & s) {
-        int n = sz(s);
-        vi pi(n, 0);
-        forall(i,1,n){
-            int j = pi[i-1];
-            while (j > 0 && s[i] != s[j])
-                j = pi[j-1];
-            if (s[i] == s[j])
-                j++;
-            pi[i] = j;
-        }
-        return pi;
-    }
 
 snippet TreeNode
     struct TreeNode {
@@ -403,3 +351,132 @@ snippet primes
         }
         return ans;
     }
+
+snippet psum2d
+    vvi psum2d(const vvi & mtx){
+        int n = sz(mtx), m = sz(mtx[0]);
+        vvi ans(n+1, vi(m+1, 0));
+        forall(i,0,n){
+            forall(j,0,m){
+                ans[i+1][j+1] = mtx[i][j];
+            }
+        }
+        forall(i,0,n){
+            forall(j,0,m){
+                ans[i+1][j+1] += ans[i][j+1] + ans[i+1][j] - ans[i][j];
+            }
+        }
+
+        return ans;
+    }
+
+    // query [(x0, y0), (x1, y1))
+    int query(int x0, int y0, int x1, int y1, const vvi & psum){
+        return psum[x1][y1] - psum[x0][y1] - psum[x1][y0] + psum[x0][y0];
+    }
+
+snippet pqcomp
+    typedef pair<char,int> cip;
+    auto comp = [](const cip & lhs, const cip & rhs){
+        if(lhs.first == rhs.first) return lhs.second < rhs.second;
+        else return lhs.first > rhs.second;
+    };
+    priority_queue<cip, vector<cip>, decltype(comp)> pq(comp);
+
+snippet hashstring
+    typedef uint64_t ull;
+    struct H {
+        ull x;
+        H(ull x = 0) : x(x) {}
+        H operator+(H o) { return x + o.x + (x + o.x < x); }
+        H operator-(H o) { return *this + ~o.x; }
+        H operator*(H o) {
+            auto m = (__uint128_t)x * o.x;
+            return H((ull)m) + (ull)(m >> 64);
+        }
+        ull get() const { return x + !~x; }
+        bool operator==(H o) const { return get() == o.get(); }
+        bool operator<(H o) const { return get() < o.get(); }
+    };
+
+    static const H C = (ll)1e11 + 3; // (order ~ 3e9; random also ok)
+
+    struct HashInterval {
+        vector<H> ha, pw;
+        HashInterval(string &str) : ha(sz(str) + 1), pw(ha) {
+            pw[0] = 1;
+            forall(i, 0, sz(str)) ha[i + 1] = ha[i] * C + str[i], pw[i + 1] = pw[i] * C;
+        }
+        H hashInterval(int a, int b) { // hash [a, b)
+            return ha[b] - ha[a] * pw[b - a];
+        }
+    };
+
+    H hashString(string &s) {
+        H h{};
+        for (char c : s)
+            h = h * C + c;
+        return h;
+    }
+
+snippet kmp
+    // KMP string matching
+    // find p in t: prefix_func(p+"#"+t); for-each pi[i]==sz(p)
+    // ti = pt_i-2*sz(p)
+    vi prefix_function(const string & s) {
+        int n = sz(s);
+        vi pi(n, 0);
+        forall(i,1,n){
+            int j = pi[i-1];
+            while (j > 0 && s[i] != s[j])
+                j = pi[j-1];
+            if (s[i] == s[j])
+                j++;
+            pi[i] = j;
+        }
+        return pi;
+    }
+
+snippet trie
+    struct Trie {
+      static constexpr int c_sz = 26;
+      bool is_leaf;
+      Trie *children[c_sz];
+    
+    public:
+      Trie() {
+        this->is_leaf = false;
+        forall(i, 0, c_sz) { this->children[i] = nullptr; }
+      }
+      ~Trie() {
+        forall(i, 0, c_sz) {
+          if (this->children[i] != nullptr) {
+            delete this->children[i];
+          }
+        }
+      }
+      void insert(const string &s) {
+        Trie *curr = this;
+        for (auto c : s) {
+          int idx = c - 'a';
+          if (curr->children[idx] == nullptr) {
+            curr->children[idx] = new Trie();
+          }
+          curr = curr->children[idx];
+        }
+        curr->is_leaf = true;
+      }
+    
+      bool search(const string &s) {
+        Trie *curr = this;
+        for (auto c : s) {
+          int idx = c - 'a';
+          curr = curr->children[idx];
+          if (curr == nullptr) {
+            return false;
+          }
+        }
+        return this->is_leaf;
+      }
+    };
+
