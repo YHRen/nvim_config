@@ -12,9 +12,10 @@ snippet mod
 alias mod
     (${1:x} % ${0:b} + ${0:b}) % ${0:b}
 
-snippet getunique
-    sort(${0:v}.begin(), ${0:v}.end());
-    ${0:v}.resize(std::distance(${0:v}.begin(), unique(${0:v}.begin(), ${0:v}.end())));
+snippet unique
+    sort(all(${0:v}));
+    auto tmp = unique(all(${0:v}));
+    ${0:v}.erase(tmp, ${0:v}.end());
 
 snippet inrange
     if( ${0:xx} >= 0 && ${0:xx} < n && ${1:yy} >= 0 and ${1:yy} < m )
@@ -383,6 +384,38 @@ snippet pqcomp
     };
     priority_queue<cip, vector<cip>, decltype(comp)> pq(comp);
 
+snippet at_most_k
+alias atMostK
+    ll at_most_k(int k, const vi & v){
+        // int A[100005];
+        // count how many subarrays have at most k unique values
+        // sliding window, two pointers, lc 992, lc 3134
+        memset(A, 0, sizeof(A));
+        int i = 0, j = 0, r = 0, n = sz(v);
+        while(j < n){
+            if(A[v[j]] > 0) A[v[j++]]++;
+            else if(r < k){ A[v[j++]]++; r++; }
+            else break;
+        }
+        ll ans = 0;
+        do{
+            ans += j-i;
+            A[v[i]] --;
+            if(A[v[i]] == 0) r --;
+
+            while(j < n){
+                if(A[v[j]] > 0) A[v[j++]]++;
+                else if(r < k){
+                    A[v[j++]]++;
+                    r++;
+                }
+                else break;
+            }
+            i++;
+        }while(i<j);
+        return ans;
+    }
+    
 snippet hashstring
     typedef uint64_t ull;
     struct H {
