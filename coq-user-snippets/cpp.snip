@@ -380,7 +380,7 @@ snippet pqcomp
     typedef pair<char,int> cip;
     auto comp = [](const cip & lhs, const cip & rhs){
         if(lhs.first == rhs.first) return lhs.second < rhs.second;
-        else return lhs.first > rhs.second;
+        else return lhs.first > rhs.first;
     };
     priority_queue<cip, vector<cip>, decltype(comp)> pq(comp);
 
@@ -513,3 +513,38 @@ snippet trie
       }
     };
 
+snippet dijkstra
+    for(auto & e: edges){
+      int x = e[0], y = e[1], w = e[2];
+      G[x].pb(mp(y, w));
+      G[y].pb(mp(x, w));
+    }
+    int src = 0;
+    priority_queue<ii, vii, greater<>> pq;
+    vi dist(n, INF);
+    dist[src] = 0;
+    pq.push({0, src});
+    while (!pq.empty()) {
+      auto [d, x] = pq.top();
+      pq.pop();
+      for (const auto &e : G[x]) {
+        int y = e.first, w = e.second;
+        if (dist[x] != INF && dist[x] + w < dist[y]) {
+          dist[y] = dist[x] + w;
+          pq.push({dist[y], y});
+        }
+      }
+    }
+
+snippet gosperhack
+alias nchoosek
+alias subset
+    // Iterate all the m-bit state where there are k 1-bits.
+    int state = (1 << k) - 1;            
+    while (state < (1 << m)){
+        doSomething(state);
+
+        int c = state & - state;
+        int r = state + c;
+        state = (((r ^ state) >> 2) / c) | r;
+    }
