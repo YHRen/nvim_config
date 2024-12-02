@@ -1,7 +1,7 @@
 -- loading order: mason, mason-lspconfig, lspconfig, coq
 
 local servers = { 'clangd', 'clojure_lsp', 'marksman',
-    'pylsp', 'rust_analyzer', 'tsserver', 'yamlls',
+    'pylsp', 'rust_analyzer', 'ts_ls', 'yamlls',
     'texlab', 'lua_ls'}
 local others = {'black', 'clang-format', 'shellcheck'}
 
