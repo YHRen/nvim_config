@@ -35,3 +35,18 @@ some examples in `vimspector/support/test/<language>`.
 * write a docker file to reproduce nvim environment
 * https://github.com/folke/lazy.nvim
 * https://github.com/jose-elias-alvarez/null-ls.nvim
+
+### install avante prerequisites
+
+* df
+* ripgrep
+* fzf
+
+### upgrade nvim
+
+```
+git clone https://github.com/neovim/neovim.git
+git checkout stable
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+```
