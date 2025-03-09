@@ -16,7 +16,7 @@ Plug 'godlygeek/tabular'
 Plug 'voldikss/vim-translator'
 Plug 'szw/vim-maximizer'
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 " Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -48,6 +48,22 @@ Plug 'nvim-telescope/telescope-file-browser.nvim' " file folder moving
 Plug 'nvim-telescope/telescope-symbols.nvim' " search for emoji unicode
 
 Plug 'hkupty/iron.nvim'  " python REPL
+
+" Deps
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'stevearc/dressing.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+
+" Optional deps
+Plug 'hrsh7th/nvim-cmp'
+Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+Plug 'HakonHarnes/img-clip.nvim'
+Plug 'zbirenbaum/copilot.lua'
+
+" Yay, pass source=true if you want to build from source
+Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 
 call plug#end()
 
