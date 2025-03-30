@@ -46,6 +46,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCM
 Plug 'AckslD/nvim-neoclip.lua'
 Plug 'nvim-telescope/telescope-file-browser.nvim' " file folder moving
 Plug 'nvim-telescope/telescope-symbols.nvim' " search for emoji unicode
+Plug 'stevearc/oil.nvim'
 
 Plug 'hkupty/iron.nvim'  " python REPL
 
