@@ -7,7 +7,10 @@ require('avante').setup{
   auto_suggestions_provider = "ollama",
   cursor_applying_provider = "ollama", -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
   ollama = {
-    model = "qwq",
+    model = "llama3.3",
+    -- model = "gemma3:27b",
+    -- model = "qwq:32b",
+
   },
   claude = {
     endpoint = "https://api.anthropic.com",

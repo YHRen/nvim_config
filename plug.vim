@@ -49,6 +49,7 @@ Plug 'nvim-telescope/telescope-symbols.nvim' " search for emoji unicode
 Plug 'stevearc/oil.nvim'
 
 Plug 'hkupty/iron.nvim'  " python REPL
+Plug 'mikesmithgh/kitty-scrollback.nvim'
 
 " Deps
 Plug 'nvim-treesitter/nvim-treesitter'
