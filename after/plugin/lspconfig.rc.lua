@@ -2,7 +2,7 @@
 
 local servers = { 'clangd', 'clojure_lsp', 'marksman',
     'ruff', 'rust_analyzer', 'ts_ls', 'yamlls',
-    'texlab', 'lua_ls'}
+    'texlab'}
 local others = {'black', 'clang-format', 'shellcheck'}
 
 require("mason").setup()

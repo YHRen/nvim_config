@@ -19,8 +19,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 " Plug 'puremourning/vimspector'
 " Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'hoob3rt/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-tree/nvim-web-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }

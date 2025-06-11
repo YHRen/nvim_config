@@ -6,18 +6,25 @@ require('avante').setup{
   -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
   auto_suggestions_provider = "ollama",
   cursor_applying_provider = "ollama", -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
+providers = {
   ollama = {
-    model = "llama3.3",
+    model = "deepseek-r1:8b",
+    -- model = "llama3.3",
     -- model = "gemma3:27b",
     -- model = "qwq:32b",
-
+    extra_request_body={
+      max_token = 32768,
+    },
   },
   claude = {
     endpoint = "https://api.anthropic.com",
     model = "claude-3-5-sonnet-20241022",
-    temperature = 0,
-    max_tokens = 4096,
+    extra_request_body={
+      temperature = 0,
+      max_tokens = 4096,
+    },
   },
+},
   ---Specify the special dual_boost mode
   ---1. enabled: Whether to enable dual_boost mode. Default to false.
   ---2. first_provider: The first provider to generate response. Default to "openai".
