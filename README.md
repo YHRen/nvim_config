@@ -50,3 +50,22 @@ git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 ```
+### setup code agent
+
+```
+sudo apt install nodejs npm
+```
+
+add plugins 
+
+```
+Plug 'olimorris/codecompanion.nvim'
+Plug 'ravitemer/mcphub.nvim', { 'do': 'npm install -g mcp-hub@latest' }
+```
+
+setup mcp-hub
+
+```
+~/.config/mcphub/servers.json  # default server config file location
+```
+

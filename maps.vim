@@ -55,7 +55,10 @@ let g:coq_settings = { 'keymap.eval_snips': '<leader>j' }
 let g:coq_settings = { 'keymap.jump_to_mark': '<c-j>' }
 "}}}
 
-
+"{{{ codecomani
+nnoremap <silent><Leader>aa :CodeCompanionChat<CR>
+"
+"}}}
 """ hop <Leader>h
 nnoremap <Leader><Leader> :HopChar2<CR>
 nnoremap <Leader>hl :HopLine<CR>

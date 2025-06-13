@@ -1,3 +1,10 @@
+local ok, _ = pcall(require, 'telescope')
+
+if not ok then
+    print("telescope not loaded")
+    return
+end
+
 require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
